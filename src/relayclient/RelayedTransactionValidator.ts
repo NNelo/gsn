@@ -2,15 +2,15 @@ import { PrefixedHexString, Transaction } from 'ethereumjs-tx'
 import { bufferToHex } from 'ethereumjs-util'
 import RelayRequest from '../common/EIP712/RelayRequest'
 import { isSameAddress } from '../common/utils'
-import ContractInteractor from './ContractInteractor'
+import ContractInteractorWeb3 from './ContractInteractor'
 import TmpRelayTransactionJsonRequest from './types/TmpRelayTransactionJsonRequest'
 import { GSNConfig } from './GSNConfigurator'
 
 export default class RelayedTransactionValidator {
-  private readonly contractInteractor: ContractInteractor
+  private readonly contractInteractor : any
   private readonly config: GSNConfig
 
-  constructor (contractInteractor: ContractInteractor, config: GSNConfig) {
+  constructor (contractInteractor: any, config: GSNConfig) {
     this.contractInteractor = contractInteractor
     this.config = config
   }

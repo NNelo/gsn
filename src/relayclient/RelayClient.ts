@@ -7,7 +7,7 @@ import TmpRelayTransactionJsonRequest from './types/TmpRelayTransactionJsonReque
 import GsnTransactionDetails from './types/GsnTransactionDetails'
 import { Address, AsyncApprovalData, PingFilter } from './types/Aliases'
 import HttpClient from './HttpClient'
-import ContractInteractor from './ContractInteractor'
+import ContractInteractorWeb3 from './ContractInteractorWeb3'
 import RelaySelectionManager from './RelaySelectionManager'
 import { IKnownRelaysManager } from './KnownRelaysManager'
 import AccountManager from './AccountManager'
@@ -43,7 +43,7 @@ export interface RelayingResult {
 export default class RelayClient {
   readonly config: GSNConfig
   private readonly httpClient: HttpClient
-  protected contractInteractor: ContractInteractor
+  protected contractInteractor: ContractInteractorWeb3
   protected knownRelaysManager: IKnownRelaysManager
   private readonly asyncApprovalData: AsyncApprovalData
   private readonly transactionValidator: RelayedTransactionValidator
@@ -65,9 +65,9 @@ export default class RelayClient {
 
     this.config = dependencies.config
     this.httpClient = dependencies.httpClient
-    this.contractInteractor = dependencies.contractInteractor
+    this.contractInteractor = new ContractInteractorWeb3(provider, config)
     this.knownRelaysManager = dependencies.knownRelaysManager
-    this.transactionValidator = dependencies.transactionValidator
+    this.transactionValidator = new RelayedTransactionValidator(this.contractInteractor, config)
     this.accountManager = dependencies.accountManager
     this.pingFilter = dependencies.pingFilter
     this.asyncApprovalData = dependencies.asyncApprovalData
