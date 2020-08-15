@@ -1,10 +1,10 @@
 {
   "version": "0.10.0",
   "description": "Open Gas Stations Network",
-  "name": "@opengsn/gsn",
+  "name": "gsnnelo",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/opengsn/gsn",
+    "url": "https://github.com/nnelo/gsn",
     "type": "git"
   },
   "contributors": [
